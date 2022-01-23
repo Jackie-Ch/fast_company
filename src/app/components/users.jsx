@@ -17,7 +17,7 @@ const Users = ({ users, ...rest }) => {
   return (
     <>
       {count > 0 && (
-        <table className="table table-hover">
+        <table className='table table-hover'>
           <thead>
             <tr>
               <th>Имя</th>

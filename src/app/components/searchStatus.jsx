@@ -19,6 +19,7 @@ const SearchStatus = ({ length }) => {
     </h2>
   );
 };
+
 SearchStatus.propTypes = {
   length: PropTypes.number.isRequired
 };

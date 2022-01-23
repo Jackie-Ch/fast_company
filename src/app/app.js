@@ -20,14 +20,14 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <SearchStatus length={users.length} />
       <Users
         onDelete={handleDelete}
         onToggleBookmark={handleToggleBookmark}
         users={users}
       />
-    </div>
+    </>
   );
 }
 

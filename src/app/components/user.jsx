@@ -30,8 +30,8 @@ const User = ({
       </td>
       <td>
         <button
-          type='button'
-          className='btn btn-danger'
+          type="button"
+          className="btn btn-danger"
           onClick={() => onDelete(_id)}
         >
           Delete

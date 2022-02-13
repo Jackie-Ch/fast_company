@@ -9,13 +9,13 @@ const SearchStatus = ({ length }) => {
   };
   return length ? (
     <h2>
-      <span className='badge btn-primary'>
+      <span className="badge btn-primary">
         {length} {renderPhrase()} тусанет с тобой сегодня
       </span>
     </h2>
   ) : (
     <h2>
-      <span className='badge btn-danger'>Никто с тобой не тусанет</span>
+      <span className="badge btn-danger">Никто с тобой не тусанет</span>
     </h2>
   );
 };

@@ -9,14 +9,15 @@ import SearchStatus from './searchStatus';
 import UsersTable from './usersTable';
 import _ from 'lodash';
 
-const Users = () => {
+const UsersList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [professions, setProfessions] = useState();
   const [selectedProf, setSelectedProf] = useState();
-  const pageSize = 8;
   const [sortBy, setSortBy] = useState({ iter: 'name', order: 'asc' });
-
   const [users, setUsers] = useState();
+  console.log(users);
+  const pageSize = 8;
+
   useEffect(() => {
     api.users.fetchAll().then((data) => setUsers(data));
   }, []);
@@ -61,8 +62,10 @@ const Users = () => {
       : users;
 
     const count = filteredUsers.length;
+
     const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order]);
     const userCrop = paginate(sortedUsers, currentPage, pageSize);
+    console.log(userCrop);
     const clearFilter = () => {
       setSelectedProf();
     };
@@ -72,47 +75,52 @@ const Users = () => {
     };
 
     return (
-      <div className="d-flex">
-        {professions && (
-          <div className="d-flex flex-column flex-shrink-0 p-3 pt-1">
-            <GroupList
-              items={professions}
-              onItemSelect={handleProfessionSelect}
-              selectedItem={selectedProf}
-            />
-            <button className={'btn btn-secondary mt-2'} onClick={clearFilter}>
-              Clear
-            </button>
-          </div>
-        )}
-        <div className="d-flex flex-column">
-          <SearchStatus length={count} />
-          {count > 0 && (
-            <UsersTable
-              users={userCrop}
-              onSort={handleSort}
-              selectedSort={sortBy}
-              onDelete={handleDelete}
-              onToggleBookmark={handleToggleBookmark}
-            />
+      <>
+        <div className="d-flex">
+          {professions && (
+            <div className="d-flex flex-column flex-shrink-0 p-3 pt-1">
+              <GroupList
+                items={professions}
+                onItemSelect={handleProfessionSelect}
+                selectedItem={selectedProf}
+              />
+              <button
+                className={'btn btn-secondary mt-2'}
+                onClick={clearFilter}
+              >
+                Clear
+              </button>
+            </div>
           )}
-          <div className="d-flex justify-content-center">
-            <Pagination
-              itemsCount={count}
-              pageSize={pageSize}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-            />
+          <div className="d-flex flex-column">
+            <SearchStatus length={count} />
+            {count > 0 && (
+              <UsersTable
+                users={userCrop}
+                onSort={handleSort}
+                selectedSort={sortBy}
+                onDelete={handleDelete}
+                onToggleBookmark={handleToggleBookmark}
+              />
+            )}
+            <div className="d-flex justify-content-center">
+              <Pagination
+                itemsCount={count}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
   return <h2>loading</h2>;
 };
 
-Users.propTypes = {
+UsersList.propTypes = {
   users: PropTypes.array
 };
 
-export default Users;
+export default UsersList;

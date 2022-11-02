@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import api from '../api';
 import QualitiesList from './quolitiesList';
 
@@ -33,6 +33,6 @@ const UserPage = ({ userId }) => {
 };
 
 UserPage.propTypes = {
-  userId: propTypes.string.isRequired
+  userId: PropTypes.string.isRequired
 };
 export default UserPage;
